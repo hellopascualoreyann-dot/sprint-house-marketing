@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprint House Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAF3EC;
+  --cream-dark:#F2E9DF;
+  --green:#2E4A35;
+  --green-mid:#3A5C42;
+  --green-light:rgba(46,74,53,0.07);
+  --ink:#1A1A14;
+  --muted:#7B7A6E;
+  --border:rgba(46,74,53,0.14);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',sans-serif;
+  --grotesk:'Space Grotesk',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 60px;height:72px;
+  background:rgba(250,243,236,0.95);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{text-decoration:none}
+.nav-logo-main{font-family:var(--serif);font-size:21px;font-weight:500;color:var(--green);display:block;line-height:1.1}
+.nav-logo-sub{font-family:var(--grotesk);font-size:8px;font-weight:400;letter-spacing:0.34em;text-transform:uppercase;color:var(--muted);margin-top:3px;display:block}
+.nav-right{display:flex;gap:12px;align-items:center}
+.btn-o{font-family:var(--grotesk);font-size:11px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);text-decoration:none;padding:9px 24px;border:1px solid var(--border);background:transparent;cursor:pointer;transition:all .2s;display:inline-block}
+.btn-o:hover{background:var(--green);color:var(--cream);border-color:var(--green)}
+.btn-f{font-family:var(--grotesk);font-size:11px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--cream);text-decoration:none;padding:9px 24px;border:1px solid var(--green);background:var(--green);cursor:pointer;transition:all .2s;display:inline-block}
+.btn-f:hover{background:var(--green-mid);border-color:var(--green-mid)}
+
+/* SECTIONS */
+section{padding:100px 60px}
+.s-label{font-family:var(--grotesk);font-size:10px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--green);opacity:.5;margin-bottom:18px;display:block}
+.s-title{font-family:var(--serif);font-size:clamp(38px,6vw,72px);font-weight:300;color:var(--green);line-height:1.05;letter-spacing:-.01em;margin-bottom:40px}
+.s-title em{font-style:italic;font-weight:300}
+.divider{border:none;border-top:1px solid var(--border);margin:0 60px}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:130px 60px 88px;position:relative;overflow:hidden}
+.hero-shape{position:absolute;top:0;right:0;width:40%;height:100%;background:var(--green);opacity:.04;clip-path:polygon(20% 0,100% 0,100% 100%,0 100%);pointer-events:none}
+.hero-eyebrow{font-family:var(--grotesk);font-size:10px;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--green);opacity:.45;margin-bottom:30px}
+.hero-h1{font-family:var(--serif);font-size:clamp(60px,10vw,128px);font-weight:300;line-height:.95;color:var(--green);letter-spacing:-.02em;margin-bottom:36px;max-width:860px}
+.hero-h1 em{font-style:italic}
+.hero-sub{font-size:15px;font-weight:300;color:var(--muted);max-width:460px;line-height:1.9;margin-bottom:52px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero-scroll-hint{position:absolute;bottom:44px;right:60px;font-family:var(--grotesk);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);opacity:.4;writing-mode:vertical-rl;display:flex;align-items:center;gap:10px}
+.hero-scroll-hint::before{content:'';display:block;width:1px;height:38px;background:var(--muted);opacity:.5}
+
+/* TICKER */
+.ticker{background:var(--green);padding:15px 0;overflow:hidden}
+.ticker-track{display:flex;animation:tick 32s linear infinite;white-space:nowrap}
+.t-item{font-family:var(--grotesk);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:rgba(250,243,236,.38);padding:0 40px;flex-shrink:0}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border)}
+.stat{padding:40px 32px;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--serif);font-size:clamp(32px,4vw,52px);font-weight:300;color:var(--green);line-height:1;margin-bottom:8px}
+.stat-l{font-family:var(--grotesk);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+/* ABOUT */
+#about{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.a-body{font-size:15px;font-weight:300;color:#4A4A40;line-height:1.95;margin-bottom:22px}
+.niche-lbl{font-family:var(--grotesk);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:block}
+.niche-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border)}
+.nc{padding:14px 18px;font-family:var(--grotesk);font-size:12px;color:var(--green);letter-spacing:.04em;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.nc:nth-child(even){border-right:none}
+.nc:nth-last-child(-n+2){border-bottom:none}
+.prev{font-size:12.5px;font-weight:300;color:var(--muted);line-height:2;margin-top:26px}
+
+/* SERVICES */
+#services{background:var(--green);padding:100px 60px}
+#services .s-label{color:rgba(250,243,236,.4)}
+#services .s-title{color:var(--cream);margin-bottom:0}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(250,243,236,.1);margin-top:60px}
+.svc{padding:52px 40px;border-right:1px solid rgba(250,243,236,.1);transition:background .22s}
+.svc:last-child{border-right:none}
+.svc:hover{background:var(--green-mid)}
+.svc-num{font-family:var(--grotesk);font-size:10px;letter-spacing:.28em;color:rgba(250,243,236,.28);margin-bottom:28px;display:block}
+.svc-name{font-family:var(--serif);font-size:30px;font-weight:400;color:var(--cream);line-height:1.2;margin-bottom:16px}
+.svc-desc{font-size:13px;font-weight:300;color:rgba(250,243,236,.58);line-height:1.85}
+
+/* WORKFLOW */
+#workflow{background:var(--cream-dark);padding:100px 60px}
+.wf-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 80px;margin-top:64px}
+.wf-step{display:grid;grid-template-columns:40px 1fr;gap:22px;padding:26px 0;border-bottom:1px solid var(--border);align-items:start}
+.wf-step:last-child{border-bottom:none}
+.wf-dot{width:8px;height:8px;border-radius:50%;background:var(--green);margin-top:5px}
+.wf-num{font-family:var(--grotesk);font-size:10px;letter-spacing:.24em;color:var(--muted);opacity:.5;margin-bottom:5px;display:block}
+.wf-title{font-family:var(--serif);font-size:21px;font-weight:400;color:var(--green);margin-bottom:5px}
+.wf-desc{font-size:12.5px;font-weight:300;color:var(--muted);line-height:1.75}
+
+/* PACKAGES */
+#packages{padding:100px 60px}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:60px}
+.pkg-price{font-family:var(--serif);font-size:34px;font-weight:300;color:var(--green);letter-spacing:-.01em;margin-bottom:12px;line-height:1}
+.pkg{background:var(--cream);border:1px solid var(--border);padding:44px 36px;display:flex;flex-direction:column}
+.pkg.feat{background:var(--green);border-color:var(--green)}
+.pkg-badge{font-family:var(--grotesk);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:block}
+.pkg.feat .pkg-badge{color:rgba(250,243,236,.42)}
+.pkg-name{font-family:var(--serif);font-size:27px;font-weight:400;color:var(--green);line-height:1.2;margin-bottom:10px}
+.pkg.feat .pkg-name{color:var(--cream)}
+.pkg-sub{font-size:12px;font-weight:300;font-style:italic;color:var(--muted);margin-bottom:28px;line-height:1.65}
+.pkg.feat .pkg-sub{color:rgba(250,243,236,.52)}
+.pkg-hr{width:100%;height:1px;background:var(--border);margin-bottom:26px}
+.pkg.feat .pkg-hr{background:rgba(250,243,236,.16)}
+.pkg-list{list-style:none;margin-bottom:22px;flex:1}
+.pkg-list li{font-size:12.5px;font-weight:300;color:#4A4A40;padding:7px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:flex-start;line-height:1.55}
+.pkg.feat .pkg-list li{color:rgba(250,243,236,.78);border-color:rgba(250,243,236,.11)}
+.pkg-list li::before{content:'—';font-size:10px;color:var(--green);opacity:.4;flex-shrink:0;margin-top:1px}
+.pkg.feat .pkg-list li::before{color:rgba(250,243,236,.38)}
+.pkg-note{font-size:11px;font-weight:300;font-style:italic;color:var(--muted);line-height:1.8;margin-bottom:24px}
+.pkg.feat .pkg-note{color:rgba(250,243,236,.4)}
+.btn-pkg{font-family:var(--grotesk);font-size:11px;font-weight:400;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;padding:12px 24px;border:1px solid var(--green);color:var(--green);background:transparent;text-align:center;transition:all .2s;cursor:pointer;display:block;margin-top:auto}
+.btn-pkg:hover{background:var(--green);color:var(--cream)}
+.pkg.feat .btn-pkg{border-color:var(--cream);color:var(--cream)}
+.pkg.feat .btn-pkg:hover{background:var(--cream);color:var(--green)}
+
+/* FAQ */
+#faq{padding:100px 60px}
+.faq-wrap{margin-top:56px;max-width:760px}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;background:none;border:none;cursor:pointer;padding:26px 0;display:flex;justify-content:space-between;align-items:center;gap:24px;text-align:left}
+.faq-qtext{font-family:var(--serif);font-size:21px;font-weight:400;color:var(--green);line-height:1.3}
+.faq-icon{width:18px;height:18px;position:relative;flex-shrink:0;color:var(--green);opacity:.42}
+.faq-icon::before,.faq-icon::after{content:'';position:absolute;background:currentColor;transition:transform .25s,opacity .25s}
+.faq-icon::before{width:12px;height:1px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.faq-icon::after{width:1px;height:12px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.faq-item.open .faq-icon::after{transform:translate(-50%,-50%) scaleY(0);opacity:0}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-item.open .faq-ans{max-height:300px}
+.faq-ansi{font-size:14px;font-weight:300;color:var(--muted);line-height:1.9;padding-bottom:26px;max-width:580px}
+
+/* FOOTER */
+footer{background:var(--green);padding:72px 60px 44px;color:var(--cream)}
+.footer-top{display:grid;grid-template-columns:1fr 1fr;gap:64px;padding-bottom:52px;border-bottom:1px solid rgba(250,243,236,.12);margin-bottom:36px}
+.f-logo{font-family:var(--serif);font-size:36px;font-weight:300;color:var(--cream);line-height:1.05;margin-bottom:4px}
+.f-logo-sub{font-family:var(--grotesk);font-size:8px;letter-spacing:.32em;text-transform:uppercase;color:rgba(250,243,236,.35);display:block;margin-bottom:20px}
+.f-tagline{font-size:13px;font-weight:300;color:rgba(250,243,236,.48);line-height:1.85;max-width:290px}
+.f-socials{display:flex;gap:12px;margin-top:26px}
+.f-social{width:36px;height:36px;border:1px solid rgba(250,243,236,.2);display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(250,243,236,.52);transition:all .2s}
+.f-social:hover{color:var(--cream);border-color:rgba(250,243,236,.5)}
+.f-social svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.f-contact-lbl{font-family:var(--grotesk);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(250,243,236,.33);display:block;margin-bottom:20px}
+.f-ci{display:flex;align-items:center;gap:12px;text-decoration:none;color:rgba(250,243,236,.62);font-size:13px;font-weight:300;margin-bottom:12px;transition:color .2s}
+.f-ci:hover{color:var(--cream)}
+.f-ci svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.f-copy{font-size:11px;font-weight:300;color:rgba(250,243,236,.26);letter-spacing:.04em}
+.f-reg{font-size:11px;font-weight:300;color:rgba(250,243,236,.26);display:flex;align-items:center;gap:8px}
+.reg-dot{width:3px;height:3px;border-radius:50%;background:rgba(250,243,236,.26)}
+
+/* REVEAL */
+.r{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.r.vis{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  nav{padding:0 24px}
+  section,#services,#workflow,#packages,#faq,footer{padding-left:24px;padding-right:24px}
+  #hero{padding:120px 24px 80px}
+  .divider{margin:0 24px}
+  #about,.svc-grid,.pkg-grid,.wf-grid,.stats,.footer-top{grid-template-columns:1fr}
+  .stat{border-right:none;border-bottom:1px solid var(--border)}
+  .stat:last-child{border-bottom:none}
+  .svc{border-right:none;border-bottom:1px solid rgba(250,243,236,.1)}
+  .svc:last-child{border-bottom:none}
+  .niche-grid{grid-template-columns:1fr}
+  .nc{border-right:none}
+  .nc:nth-last-child(-n+2){border-bottom:1px solid var(--border)}
+  .nc:last-child{border-bottom:none}
+}
+@media(max-width:580px){
+  .hero-ctas{flex-direction:column}
+  .nav-right .btn-o{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-main">Sprint House</span>
+    <span class="nav-logo-sub">Marketing</span>
+  </a>
+  <div class="nav-right">
+    <a href="http://works-and-services.my.canva.site/dahofjxxwcy" target="_blank" class="btn-o">Portfolio</a>
+    <a href="https://calendly.com/info-leidigitalmarketing/30min" target="_blank" class="btn-f">Book a Call</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-shape"></div>
+  <p class="hero-eyebrow r">Sprint House Marketing &nbsp;—&nbsp; Est. May 2025</p>
+  <h1 class="hero-h1 r">Execute fast.<br><em>Scale smart.</em></h1>
+  <p class="hero-sub r">Sprint House represents fast execution and structured growth. We help brands move quickly while building a strong and consistent marketing foundation.</p>
+  <div class="hero-ctas r">
+    <a href="https://calendly.com/info-leidigitalmarketing/30min" target="_blank" class="btn-f">Book a Discovery Call</a>
+    <a href="http://works-and-services.my.canva.site/dahofjxxwcy" target="_blank" class="btn-o">View Our Work</a>
+  </div>
+  <span class="hero-scroll-hint">Scroll</span>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="t-item">Social Media Management</span>
+    <span class="t-item">·</span>
+    <span class="t-item">Content Production</span>
+    <span class="t-item">·</span>
+    <span class="t-item">Ads Management</span>
+    <span class="t-item">·</span>
+    <span class="t-item">SEO Strategy</span>
+    <span class="t-item">·</span>
+    <span class="t-item">Creative Direction</span>
+    <span class="t-item">·</span>
+    <span class="t-item">Market Research</span>
+    <span class="t-item">·</span>
+    <span class="t-item">Brand Strategy</span>
+    <span class="t-item">·</span>
+    <span class="t-item">Social Media Management</span>
+    <span class="t-item">·</span>
+    <span class="t-item">Content Production</span>
+    <span class="t-item">·</span>
+    <span class="t-item">Ads Management</span>
+    <span class="t-item">·</span>
+    <span class="t-item">SEO Strategy</span>
+    <span class="t-item">·</span>
+    <span class="t-item">Creative Direction</span>
+    <span class="t-item">·</span>
+    <span class="t-item">Market Research</span>
+    <span class="t-item">·</span>
+    <span class="t-item">Brand Strategy</span>
+    <span class="t-item">·</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat r"><div class="stat-n">Proven</div><div class="stat-l">Experience</div></div>
+  <div class="stat r"><div class="stat-n">3</div><div class="stat-l">Countries served</div></div>
+  <div class="stat r"><div class="stat-n">10+</div><div class="stat-l">Niches handled</div></div>
+  <div class="stat r"><div class="stat-n">100%</div><div class="stat-l">BIR & DTI registered</div></div>
+</div>
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div>
+    <span class="s-label r">About Us</span>
+    <h2 class="s-title r">The people <em>behind</em><br>the sprint.</h2>
+    <p class="a-body r">Our founder Leigh has been a marketing girly since 2020. She took Accountancy in college and found her love for marketing during the pandemic — starting with clients based in the US, Australia, and later the Philippines and parts of Europe.</p>
+    <p class="a-body r">Leigh established Sprint House Marketing as her biggest venture yet. Formerly known as Lei Creative Studio and founded in May 2025, she decided to rebrand to focus on a much more precise and intentional approach to brand and content strategy.</p>
+  </div>
+  <div>
+    <div class="r">
+      <span class="niche-lbl">We work with</span>
+      <div class="niche-grid">
+        <div class="nc">Cosmetic & Skincare Brands</div>
+        <div class="nc">Food & Beverage</div>
+        <div class="nc">Rehab & PT Clinics</div>
+        <div class="nc">Pilates Studios</div>
+        <div class="nc">Fitness & Wellness Brands</div>
+        <div class="nc">Apparel Brands</div>
+        <div class="nc">Service-Based Businesses</div>
+        <div class="nc">And more</div>
+      </div>
+    </div>
+    <div class="r">
+      <span class="niche-lbl" style="margin-top:32px;display:block">Previously worked in</span>
+      <p class="prev">Consumer goods &nbsp;·&nbsp; F&B &nbsp;·&nbsp; Ecommerce platforms &nbsp;·&nbsp; NDIS providers (AU) &nbsp;·&nbsp; Rehab & PT clinics &nbsp;·&nbsp; Roofing & Home Improvement &nbsp;·&nbsp; Photo Studios &nbsp;·&nbsp; Agri products &nbsp;·&nbsp; Architecture firms</p>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- SERVICES -->
+<section id="services">
+  <span class="s-label r">What We Do</span>
+  <h2 class="s-title r">Our core <em>services.</em></h2>
+  <div class="svc-grid">
+    <div class="svc r">
+      <span class="svc-num">01</span>
+      <div class="svc-name">Full Social Media Management</div>
+      <p class="svc-desc">End-to-end management of your social presence — strategy, content planning, scheduling, monitoring, and community engagement across platforms.</p>
+    </div>
+    <div class="svc r">
+      <span class="svc-num">02</span>
+      <div class="svc-name">Content Filming & Photoshoot</div>
+      <p class="svc-desc">On-location content production with full creative direction. We handle everything from concept to final edited assets ready for publishing.</p>
+    </div>
+    <div class="svc r">
+      <span class="svc-num">03</span>
+      <div class="svc-name">Ads Management</div>
+      <p class="svc-desc">Paid social campaigns crafted and managed for performance. We plan, launch, monitor, and optimize your campaigns so every peso works harder.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section id="workflow">
+  <span class="s-label r">How We Work</span>
+  <h2 class="s-title r">Our process,<br><em>step by step.</em></h2>
+  <div class="wf-grid">
+    <div>
+      <div class="wf-step r"><div><div class="wf-dot"></div></div><div><span class="wf-num">Step 01</span><div class="wf-title">Discovery Call</div><p class="wf-desc">We get to know your brand, goals, and current landscape to determine the best path forward together.</p></div></div>
+      <div class="wf-step r"><div><div class="wf-dot"></div></div><div><span class="wf-num">Step 02</span><div class="wf-title">Contract Signing & Onboarding</div><p class="wf-desc">Formalize the engagement with a contract, 50% upfront payment, and an onboarding session to align on all brand details.</p></div></div>
+      <div class="wf-step r"><div><div class="wf-dot"></div></div><div><span class="wf-num">Step 03</span><div class="wf-title">Market & Content Research</div><p class="wf-desc">Deep dive into your market, competitors, and audience to inform every creative and strategic decision made.</p></div></div>
+      <div class="wf-step r"><div><div class="wf-dot"></div></div><div><span class="wf-num">Step 04</span><div class="wf-title">Pre-Auditing & Analysis</div><p class="wf-desc">A full audit of your existing accounts — identifying what's working, what's not, and where the real growth opportunities are.</p></div></div>
+      <div class="wf-step r"><div><div class="wf-dot"></div></div><div><span class="wf-num">Step 05</span><div class="wf-title">Set-up & Optimization</div><p class="wf-desc">Profile clean-up, bio optimization, link-in-bio setup, and platform-specific settings for maximum discoverability.</p></div></div>
+      <div class="wf-step r"><div><div class="wf-dot"></div></div><div><span class="wf-num">Step 06</span><div class="wf-title">SEO</div><p class="wf-desc">Social SEO implementation — keyword research, hashtag strategy, and caption optimization for sustained organic reach.</p></div></div>
+    </div>
+    <div>
+      <div class="wf-step r"><div><div class="wf-dot"></div></div><div><span class="wf-num">Step 07</span><div class="wf-title">Content Planning & Strategy</div><p class="wf-desc">Strategy prep, content calendar creation, creative direction documentation, and full execution alignment before production.</p></div></div>
+      <div class="wf-step r"><div><div class="wf-dot"></div></div><div><span class="wf-num">Step 08</span><div class="wf-title">Content Production</div><p class="wf-desc">For production-package clients: on-location photoshoots and filming. For others, this moves directly to editing, graphic design, and caption writing.</p></div></div>
+      <div class="wf-step r"><div><div class="wf-dot"></div></div><div><span class="wf-num">Step 09</span><div class="wf-title">Scheduling of Posts</div><p class="wf-desc">Content queued and scheduled for optimal timing — platform-native, audience-aware, and approved before going live.</p></div></div>
+      <div class="wf-step r"><div><div class="wf-dot"></div></div><div><span class="wf-num">Step 10</span><div class="wf-title">Monitoring & Analysis</div><p class="wf-desc">Weekly and monthly performance tracking. Data translated into clear insights and reports delivered directly to you.</p></div></div>
+      <div class="wf-step r"><div><div class="wf-dot"></div></div><div><span class="wf-num">Step 11</span><div class="wf-title">Engagement & Community</div><p class="wf-desc">Audience engagement, comment management, and inbox management where applicable — keeping your community warm and responsive.</p></div></div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- PACKAGES -->
+<section id="packages">
+  <span class="s-label r">Our Packages</span>
+  <h2 class="s-title r">Built to <em>move</em> your<br>brand forward.</h2>
+  <div class="pkg-grid">
+
+    <div class="pkg r">
+      <span class="pkg-badge">Full-Stack Package</span>
+      <div class="pkg-name">Sprint Content Ecosystem</div>
+      <div class="pkg-price">PHP 42,230</div>
+      <p class="pkg-sub">For brands ready to invest in full-scale content production and social management.</p>
+      <div class="pkg-hr"></div>
+      <ul class="pkg-list">
+        <li>1-day photoshoot and content filming</li>
+        <li>Up to 20 images + 10 videos (1 month of content)</li>
+        <li>Photo and video editing</li>
+        <li>Creative direction and preparation</li>
+        <li>Full social media management</li>
+        <li>Content strategy and market research</li>
+      </ul>
+      <p class="pkg-note">Convertible to social media management only for months when a shoot isn't needed. Fully customizable — fees may vary if you prefer a model or influencer, or if studio rental is required (studio and talent fees charged separately).</p>
+      <a href="https://forms.gle/2nXzYqYpE9x5hRuD8" target="_blank" class="btn-pkg">Avail This Package</a>
+    </div>
+
+    <div class="pkg feat r">
+      <span class="pkg-badge">Most Popular</span>
+      <div class="pkg-name">SocMed Focused Ecosystem</div>
+      <div class="pkg-price" style="color:rgba(250,243,236,0.85)">PHP 25,850</div>
+      <p class="pkg-sub">Comprehensive social media management — no shoot required.</p>
+      <div class="pkg-hr"></div>
+      <ul class="pkg-list">
+        <li>Content planning and creation</li>
+        <li>Account management (up to 3 accounts)</li>
+        <li>25 contents/month (10 videos · 15 static)</li>
+        <li>Caption writing</li>
+        <li>SEO</li>
+        <li>Market research</li>
+        <li>Content audit and analysis</li>
+        <li>Monitoring and report</li>
+        <li>Inbox management</li>
+        <li>2 ads campaigns/month (ad spend excluded)</li>
+        <li>Social media set-up and optimization</li>
+        <li>Photo and video editing</li>
+        <li>Graphic designing</li>
+        <li>Influencer outreach and management</li>
+      </ul>
+      <p class="pkg-note">Available for international clients (social media management scope only).</p>
+      <a href="https://calendly.com/info-leidigitalmarketing/30min" target="_blank" class="btn-pkg">Avail This Package</a>
+    </div>
+
+    <div class="pkg r">
+      <span class="pkg-badge">Flexible</span>
+      <div class="pkg-name">Custom Package</div>
+      <p class="pkg-sub">Tailored exactly to what your brand needs and budget allows.</p>
+      <div class="pkg-hr"></div>
+      <ul class="pkg-list">
+        <li>Choose only the services you need</li>
+        <li>Scale up or down based on your goals</li>
+        <li>Mix-and-match from any of our offerings</li>
+        <li>Flexible scope for any budget range</li>
+        <li>Personalized proposal after a discovery call</li>
+      </ul>
+      <p class="pkg-note">Not sure what you need yet? That's completely fine. We'll walk you through your options and build the most effective package for your goals together.</p>
+      <a href="https://forms.gle/HaF5LYvFGda6BYV67" target="_blank" class="btn-pkg">Build Your Package</a>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- FAQ -->
+<section id="faq">
+  <span class="s-label r">FAQ</span>
+  <h2 class="s-title r">Questions we <em>often</em> hear.</h2>
+  <div class="faq-wrap">
+    <div class="faq-item">
+      <button class="faq-q" onclick="tFaq(this)">
+        <span class="faq-qtext">Do you handle clients outside the Philippines?</span>
+        <span class="faq-icon"></span>
+      </button>
+      <div class="faq-ans"><p class="faq-ansi">Yes, we do! However, international clients are currently limited to the SocMed Focused Ecosystem package only, as our content production services require in-person availability.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="tFaq(this)">
+        <span class="faq-qtext">I'm outside Metro Manila — can I still avail the Sprint Content Ecosystem?</span>
+        <span class="faq-icon"></span>
+      </button>
+      <div class="faq-ans"><p class="faq-ansi">Yes! However, transportation, meals, and accommodation (if needed) will be charged to the client and must be settled upfront before the shoot date is confirmed.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="tFaq(this)">
+        <span class="faq-qtext">Do you require an upfront payment?</span>
+        <span class="faq-icon"></span>
+      </button>
+      <div class="faq-ans"><p class="faq-ansi">Yes. We always require a 50% upfront fee before service commencement and after contract signing. The remaining 50% is settled on an agreed billing schedule.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="tFaq(this)">
+        <span class="faq-qtext">Are you BIR and DTI registered?</span>
+        <span class="faq-icon"></span>
+      </button>
+      <div class="faq-ans"><p class="faq-ansi">Yes, we are. Sprint House Marketing is both BIR and DTI registered. We issue official BIR service invoices to all clients upon payment — keeping everything transparent and fully compliant.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="f-logo">Sprint House</div>
+      <span class="f-logo-sub">Marketing</span>
+      <p class="f-tagline">Execute fast. Scale smart. Build a marketing foundation your brand truly deserves.</p>
+      <div class="f-socials">
+        <a href="https://facebook.com/sprinthousemarketing" target="_blank" class="f-social" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://instagram.com/sprinthousemarketing" target="_blank" class="f-social" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <span class="f-contact-lbl">Get in Touch</span>
+      <a href="mailto:info.sprinthousemarketing@outlook.com" class="f-ci">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        info.sprinthousemarketing@outlook.com
+      </a>
+      <a href="tel:+639277096907" class="f-ci">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.62 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.37a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+        +63 927 709 6907
+      </a>
+      <a href="https://facebook.com/sprinthousemarketing" target="_blank" class="f-ci">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        facebook.com/sprinthousemarketing
+      </a>
+      <a href="https://instagram.com/sprinthousemarketing" target="_blank" class="f-ci">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @sprinthousemarketing
+      </a>
+      <div style="margin-top:26px">
+        <a href="https://calendly.com/info-leidigitalmarketing/30min" target="_blank" style="border-color:rgba(250,243,236,.25);color:rgba(250,243,236,.6)" class="btn-o">Book a Discovery Call &rarr;</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="f-copy">&copy; 2025 Sprint House Marketing. All rights reserved.</p>
+    <div class="f-reg"><span>BIR Registered</span><span class="reg-dot"></span><span>DTI Registered</span></div>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target)}})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.r').forEach(el=>obs.observe(el));
+setTimeout(()=>document.querySelectorAll('#hero .r').forEach((el,i)=>setTimeout(()=>el.classList.add('vis'),i*130)),100);
+function tFaq(btn){const it=btn.closest('.faq-item'),op=it.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));if(!op)it.classList.add('open')}
+</script>
+</body>
+</html>
